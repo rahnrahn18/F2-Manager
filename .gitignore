@@ -1,0 +1,14 @@
+# Filter Sampah Termux & Android
+.gradle/
+local.properties
+.idea/
+build/
+app/build/
+*/build/
+*.iml
+*.log
+.cxx/
+.externalNativeBuild/
+captures/
+*.apk
+*.ap_
