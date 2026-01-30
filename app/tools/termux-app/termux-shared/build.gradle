@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace "com.termux.shared"
+
+    // Explicitly set SDK versions as requested
+    compileSdk 36
+    buildToolsVersion "35.0.1"
+    ndkVersion "28.2.13676358"
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 36
+
+        externalNativeBuild {
+            cmake { version "4.1.1" }
+        }
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}

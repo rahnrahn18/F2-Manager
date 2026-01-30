@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'rikka.shizuku.provider'
+
+    compileSdk 36
+    buildToolsVersion "35.0.1"
+    ndkVersion "28.2.13676358"
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 36
+
+        externalNativeBuild {
+            cmake { version "4.1.1" }
+        }
+    }
+
+    buildFeatures {
+        buildConfig false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(':shizuku-api')
+    implementation 'androidx.annotation:annotation:1.9.0'
+}

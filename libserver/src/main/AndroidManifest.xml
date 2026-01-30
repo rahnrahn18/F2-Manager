@@ -1,0 +1,8 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <meta-data
+            android:name="moe.shizuku.service.v3"
+            android:value="io.github.muntashirakon.AppManager.server.FileExplorerService" />
+    </application>
+</manifest>

@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.hzy.libp7zip' // Assigned namespace based on groupId/artifactId convention
+
+    compileSdk 36
+    buildToolsVersion "35.0.1"
+    ndkVersion "28.2.13676358"
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 36
+        versionCode 8
+        versionName "1.7.1"
+        externalNativeBuild {
+            cmake {
+                version "4.1.1"
+                arguments '-DANDROID_STL=c++_static', '-DANDROID_PLATFORM=android-26' // Updated platform to minSdk
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            externalNativeBuild {
+                cmake {
+                    // log switch
+                    cppFlags.add('-DNATIVE_LOG')
+                }
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
