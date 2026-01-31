@@ -29,3 +29,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+dependencies {
+    implementation "androidx.annotation:annotation:1.9.1"
+}

@@ -12,6 +12,16 @@ group="com.github.topjohnwu.libsu"
 
 android {
     namespace = "com.topjohnwu.superuser.ipc"
+    compileSdk = (rootProject.extra["compile_sdk"] as Int)
+    buildToolsVersion = (rootProject.extra["build_tools"] as String)
+    ndkVersion = (rootProject.extra["ndk_version"] as String)
+
+    defaultConfig {
+        minSdk = (rootProject.extra["min_sdk"] as Int)
+        targetSdk = (rootProject.extra["target_sdk"] as Int)
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
     buildFeatures {
         aidl = true
     }
@@ -60,12 +70,12 @@ android.libraryVariants.all {
             R8.main(args)
         }
     }
-    javaCompileProvider {
-        finalizedBy(jarTask)
-    }
+    // javaCompileProvider {
+    //    finalizedBy(jarTask)
+    // }
 }
 
 dependencies {
     compileOnly("androidx.annotation:annotation:1.6.0")
-    api(project(":core"))
+    api(project(":libsu"))
 }

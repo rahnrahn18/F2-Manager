@@ -1,18 +1,27 @@
 plugins {
     id('com.android.library')
-    id('dev.rikka.tools.refine')
+    id('dev.rikka.tools.refine') version '4.4.0'
 }
 
 android {
     namespace 'rikka.shizuku.server'
+    compileSdk rootProject.ext.compile_sdk
+    buildToolsVersion rootProject.ext.build_tools
+    ndkVersion rootProject.ext.ndk_version
+
+    defaultConfig {
+        minSdk rootProject.ext.min_sdk
+        targetSdk rootProject.ext.target_sdk
+    }
+
     buildTypes {
         release {
             minifyEnabled false
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -21,11 +30,11 @@ dependencies {
     implementation 'androidx.core:core:1.16.0'
     implementation 'dev.rikka.rikkax.parcelablelist:parcelablelist:2.0.1'
 
-    api project(':aidl')
-    api project(':shared')
-    api project(':rish')
+    api project(':shizuku-aidl')
+    api project(':shizuku-shared')
+    api project(':shizuku-rish')
 
-    implementation libs.refine.runtime
-    implementation libs.hidden.compat
-    compileOnly libs.hidden.stub
+    implementation "dev.rikka.tools.refine:runtime:${refine_version}"
+    implementation "dev.rikka.hidden:compat:4.3.3"
+    compileOnly "dev.rikka.hidden:stub:4.3.3"
 }

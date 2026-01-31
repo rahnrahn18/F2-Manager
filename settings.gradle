@@ -8,5 +8,55 @@ include ':libcore:ui'
 include ':libopenpgp'
 include ':libserver'
 include ':server'
+
+// Local Tools Modules
+include ':materialfiles'
+project(':materialfiles').projectDir = file('app/tools/MaterialFiles/app')
+
+include ':shizuku-api'
+project(':shizuku-api').projectDir = file('app/tools/Shizuku/api')
+
+include ':shizuku-aidl'
+project(':shizuku-aidl').projectDir = file('app/tools/Shizuku/aidl')
+
+include ':shizuku-shared'
+project(':shizuku-shared').projectDir = file('app/tools/Shizuku/shared')
+
+include ':shizuku-server-shared'
+project(':shizuku-server-shared').projectDir = file('app/tools/Shizuku/server-shared')
+
+include ':shizuku-rish'
+project(':shizuku-rish').projectDir = file('app/tools/Shizuku/rish')
+
+include ':shizuku-provider'
+project(':shizuku-provider').projectDir = file('app/tools/Shizuku/provider')
+
+include ':libsu'
+project(':libsu').projectDir = file('app/tools/libsu/core')
+
+include ':libsu-service'
+project(':libsu-service').projectDir = file('app/tools/libsu/service')
+
+include ':sora-editor'
+project(':sora-editor').projectDir = file('app/tools/sora-editor/editor')
+
+include ':sora-language-textmate'
+project(':sora-language-textmate').projectDir = file('app/tools/sora-editor/language-textmate')
+
+include ':sora-oniguruma'
+project(':sora-oniguruma').projectDir = file('app/tools/sora-editor/oniguruma-native')
+
+include ':hidden-api-bypass'
+project(':hidden-api-bypass').projectDir = file('app/tools/AndroidHiddenApiBypass/library')
+
+include ':hidden-api-stub'
+project(':hidden-api-stub').projectDir = file('app/tools/AndroidHiddenApiBypass/stub')
+
+include ':p7zip'
+project(':p7zip').projectDir = file('app/tools/AndroidP7zip/libp7zip')
+
+include ':termux-shared'
+project(':termux-shared').projectDir = file('app/tools/termux-app/termux-shared')
+
 rootProject.name = "AppManager"
 gradle.ext.appManagerRoot = settingsDir

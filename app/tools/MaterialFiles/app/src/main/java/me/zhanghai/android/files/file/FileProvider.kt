@@ -393,7 +393,7 @@ val Path.fileProviderUri: Uri
         val uriPath = Uri.encode(toUri().toString())
         return Uri.Builder()
             .scheme(ContentResolver.SCHEME_CONTENT)
-            .authority(BuildConfig.FILE_PROVIDIER_AUTHORITY)
+            .authority(BuildConfig.FILE_PROVIDER_AUTHORITY)
             .path(uriPath)
             .build()
     }

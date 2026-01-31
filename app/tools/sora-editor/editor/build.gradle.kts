@@ -1,19 +1,20 @@
 plugins {
     id("com.android.library")
-    id("com.vanniktech.maven.publish.base")
+    id("org.jetbrains.kotlin.android")
+    // id("com.vanniktech.maven.publish.base") // Removed
 }
 
 android {
     namespace = "io.github.rosemoe.sora"
 
     // Explicitly set SDK versions as requested
-    compileSdk = 36
-    buildToolsVersion = "35.0.1"
-    ndkVersion = "28.2.13676358"
+    compileSdk = (rootProject.extra["compile_sdk"] as Int)
+    buildToolsVersion = (rootProject.extra["build_tools"] as String)
+    ndkVersion = (rootProject.extra["ndk_version"] as String)
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 36
+        minSdk = (rootProject.extra["min_sdk"] as Int)
+        targetSdk = (rootProject.extra["target_sdk"] as Int)
         // Removed testInstrumentationRunner as tests are pruned
 
         externalNativeBuild {
@@ -29,6 +30,14 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 

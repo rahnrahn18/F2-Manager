@@ -101,7 +101,7 @@ android {
             useLegacyPackaging true
         }
         resources {
-            excludes += ['META-INF/*.version']
+            excludes += ['META-INF/*.version', 'META-INF/DEPENDENCIES']
             merges += ['baksmali.properties']
         }
     }
@@ -132,8 +132,10 @@ dependencies {
     implementation "com.github.MuntashirAkon:sun-security-android:${sun_security_version}"
     implementation "org.bouncycastle:bcprov-jdk15to18:${bouncycastle_version}"
     implementation "org.bouncycastle:bcpkix-jdk15to18:${bouncycastle_version}"
-    implementation "com.android.tools.smali:smali-baksmali:${baksmali_version}"
     implementation "com.android.tools.smali:smali:${baksmali_version}"
+    implementation "com.android.tools.smali:smali-baksmali:${baksmali_version}"
+    implementation "com.android.tools.smali:smali-dexlib2:${baksmali_version}"
+    implementation "com.android.tools.smali:smali-util:${baksmali_version}"
     implementation "com.github.MuntashirAkon.jadx:jadx-core:${jadx_version}"
     // Replace SLF4J with a placeholder
     configurations {
@@ -158,9 +160,14 @@ dependencies {
 
     // Privileged
     implementation "com.github.MuntashirAkon:libadb-android:${libadb_version}"
-    implementation "com.github.topjohnwu.libsu:core:${libsu_version}"
-    implementation "org.lsposed.hiddenapibypass:hiddenapibypass:${hiddenapibypass_version}"
+    implementation project(':libsu')
+    implementation project(':hidden-api-bypass')
+    implementation project(':shizuku-api')
     implementation "dev.rikka.tools.refine:runtime:${refine_version}"
+
+    // Local Tools
+    implementation project(':materialfiles')
+    implementation project(':p7zip')
 
     // UI
     implementation "com.google.android.material:material:${material_version}"
