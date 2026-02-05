@@ -1,36 +1,16 @@
-/*******************************************************************************
- *    sora-editor - the awesome code editor for Android
- *    https://github.com/Rosemoe/sora-editor
- *    Copyright (C) 2020-2024  Rosemoe
- *
- *     This library is free software; you can redistribute it and/or
- *     modify it under the terms of the GNU Lesser General Public
- *     License as published by the Free Software Foundation; either
- *     version 2.1 of the License, or (at your option) any later version.
- *
- *     This library is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *     Lesser General Public License for more details.
- *
- *     You should have received a copy of the GNU Lesser General Public
- *     License along with this library; if not, write to the Free Software
- *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
- *     USA
- *
- *     Please contact Rosemoe by email 2073412493@qq.com if you need
- *     additional information or have any questions
- ******************************************************************************/
-
 plugins {
     id("com.android.library")
-    id("com.vanniktech.maven.publish.base")
 }
 
 android {
     namespace = "io.github.rosemoe.sora.langs.textmate"
+    compileSdk = (rootProject.extra["compile_sdk"] as Int)
+    buildToolsVersion = (rootProject.extra["build_tools"] as String)
+    ndkVersion = (rootProject.extra["ndk_version"] as String)
 
     defaultConfig {
+        minSdk = (rootProject.extra["min_sdk"] as Int)
+        targetSdk = (rootProject.extra["target_sdk"] as Int)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -45,25 +25,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        // Flag to enable support for the new language APIs
-        // It's only needed if your app targets old Android APIs.
-        //isCoreLibraryDesugaringEnabled = true
-    }
 }
 
 dependencies {
-    compileOnly(projects.editor)
-    compileOnly(projects.onigurumaNative)
+    compileOnly(project(":sora-editor"))
+    compileOnly(project(":sora-oniguruma"))
 
-    implementation(libs.gson)
-    implementation(libs.jcodings)
-    implementation(libs.joni)
+    implementation("com.google.code.gson:gson:2.13.1")
+    implementation("org.jruby.jcodings:jcodings:1.0.55")
+    implementation("org.jruby.joni:joni:2.1.41")
+    implementation("org.snakeyaml:snakeyaml-engine:2.7")
 
-    implementation(libs.snakeyaml.engine)
-    implementation(libs.jdt.annotation)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
+    implementation("org.eclipse.jdt:org.eclipse.jdt.annotation:2.2.600") // Approximation
 }

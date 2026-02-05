@@ -43,9 +43,11 @@ val appInitializers = listOf(
 )
 
 private fun initializeCrashlytics() {
-//#ifdef NONFREE
-    me.zhanghai.android.files.nonfree.CrashlyticsInitializer.initialize()
-//#endif
+    // Replaced Crashlytics with local logging for F2-Manager
+    android.util.Log.i("F2-Manager", "Crash reporting initialized (Local Mode)")
+    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        android.util.Log.e("F2-Manager", "Uncaught exception in " + thread.name, throwable)
+    }
 }
 
 private fun disableHiddenApiChecks() {

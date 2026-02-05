@@ -2,34 +2,38 @@ Agent.md
 
 "Turuti perintah pada prompt"
 
----
-‎[Spec of my Enviroment & tools Installed in my Enviroment]
+‎***
+‎[All Enviroment & tools Installed in my Enviroment]
 ‎
 ‎IDE & ENV
 ‎IDE : Android Code Studio / AndroidIDE (AndroidCSOfficial v1.0.0+gh.r3)
 ‎Platform : Android (on-device)
 ‎Device ABI : arm64-v8a
-‎Build system : Gradle Wrapper
+‎Java Runtime (JDK): OpenJDK 17.0.16
+‎Gradle Wrapper 8.13-bin.zip
 ‎
 ‎Core Tools:
-‎  - Cmdline-Tools: 9.0 (latest)
+‎  - Cmdline-Tools: 20.0 (latest)
 ‎  - Platform-Tools: 34.0.4 (adb, fastboot)
 ‎  - Patcher: v4
 ‎
-‎Build Configuration:
-‎  - Build-Tools Versions: 
-‎    - 35.0.0
-‎Or
-‎    - 35.0.1
-
-‎    - API 36 (Android 16)
-‎
+‎    compileSdk 35
+‎    buildToolsVersion "35.0.2" // wajib
+‎    ndkVersion "28.2.13676358" // wajib
+‎    
 ‎Korlin 2.1.0
 ‎
 ‎Native Development (C++):
 ‎  - NDK Version: 28.2.13676358
 ‎  - CMake Version: 4.1.1
-‎  - Build System: Ninja (Implicitly supported by CMake suite)
+‎  - Build System: Ninja 
+‎
+‎
+‎---
+‎Penting !
+‎Karena CompileSdk 35 (Android 15) dan Build-Tools 35.0.2 aarch64 (https://github.com/lzhiyong/android-sdk-tools)/jika pengujian error pakai 35.0.0, pastikan di file build.gradle (Project Level) atau libs.versions.toml, versi Plugin Android kamu minimal 8.4.0 atau lebih baru (8.5/8.6 recommended).
+‎---
+‎***
 ‎
 ‎---
 
